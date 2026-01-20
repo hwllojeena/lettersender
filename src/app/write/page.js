@@ -197,7 +197,7 @@ export default function Write() {
                             padding: '0 10%', // Giving some space from the hand-drawn border
                             transform: 'rotate(-0.5deg)' // Slight tilt to match the hand-drawn feel
                         }}>
-                            <h2 style={{ fontSize: '1.8rem', color: '#134857', fontWeight: '500' }}>Message Sent!</h2>
+                            <h2 className="home-title" style={{ fontSize: '2.5rem', color: '#134857', fontWeight: '500' }}>Message Sent!</h2>
                             <p style={{ fontSize: '1.2rem', lineHeight: '1.4', color: '#546e7a' }}>
                                 Your letter is being sent through email.
                             </p>
