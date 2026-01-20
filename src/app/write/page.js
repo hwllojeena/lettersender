@@ -94,7 +94,7 @@ export default function Write() {
                                     border: 'none',
                                     outline: 'none',
                                     fontFamily: 'inherit',
-                                    fontSize: '1.2rem',
+                                    fontSize: '1.3rem',
                                     color: 'inherit'
                                 }}
                             />
@@ -133,7 +133,7 @@ export default function Write() {
                                     border: 'none',
                                     outline: 'none',
                                     fontFamily: 'inherit',
-                                    fontSize: '1.2rem',
+                                    fontSize: '1.3rem',
                                     color: 'inherit'
                                 }}
                             />
@@ -174,7 +174,7 @@ export default function Write() {
                     <div style={{
                         position: 'relative',
                         width: '100%',
-                        maxWidth: '450px',
+                        maxWidth: '400px',
                         aspectRatio: '3/2',
                         display: 'flex',
                         flexDirection: 'column',
@@ -198,10 +198,10 @@ export default function Write() {
                             transform: 'rotate(-0.5deg)' // Slight tilt to match the hand-drawn feel
                         }}>
                             <h2 className="home-title" style={{ fontSize: '2.5rem', color: '#134857', fontWeight: '500' }}>Message Sent!</h2>
-                            <p style={{ fontSize: '1.2rem', lineHeight: '1.4', color: '#546e7a' }}>
+                            <p style={{ fontSize: '1.3rem', lineHeight: '1.4', color: '#546e7a' }}>
                                 Your letter is being sent through email.
                             </p>
-                            <Link href="/" className="btn-primary" style={{ alignSelf: 'center', marginTop: '0.5rem' }}>
+                            <Link href="/" className="btn-primary home-button" style={{ alignSelf: 'center', marginTop: '0.5rem' }}>
                                 Close
                             </Link>
                         </div>
