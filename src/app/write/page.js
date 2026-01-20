@@ -143,16 +143,41 @@ export default function Write() {
             </main>
 
             {/* Bottom Section: Button */}
-            <footer style={{ marginBottom: '3rem', width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '2rem' }}>
-                <Link href="/" className="btn-primary home-button" style={{ opacity: 0.5 }}>
-                    Back
-                </Link>
-                <button
-                    onClick={handleSend}
-                    className="btn-primary home-button"
-                >
-                    Send
-                </button>
+            <footer style={{
+                marginBottom: '3rem',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '1rem'
+            }}>
+                <div style={{ display: 'flex', flexDirection: 'row', gap: '2rem', alignItems: 'center' }}>
+                    <Link href="/" className="btn-primary home-button" style={{ opacity: 0.5 }}>
+                        Back
+                    </Link>
+                    <button
+                        onClick={handleSend}
+                        className="btn-primary home-button"
+                    >
+                        Send
+                    </button>
+                </div>
+                <p style={{
+                    fontSize: '0.9rem',
+                    color: '#134857',
+                    opacity: 0.8,
+                    fontFamily: 'var(--font-body)'
+                }}>
+                    Made by <a
+                        href="https://www.tiktok.com/@hwllojeena?_r=1&_t=ZS-93EDb36bCDP"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ textDecoration: 'none', color: 'inherit', fontWeight: '500' }}
+                    >
+                        hwllojeena
+                    </a>
+                </p>
             </footer>
 
             {/* Notification Modal */}

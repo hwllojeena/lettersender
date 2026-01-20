@@ -54,10 +54,32 @@ export default function Home() {
       </main>
 
       {/* Bottom Section: Button */}
-      <footer style={{ marginBottom: '3rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <footer style={{
+        marginBottom: '3rem',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '1rem'
+      }}>
         <Link href="/write" className="btn-primary home-button">
           Write
         </Link>
+        <p style={{
+          fontSize: '0.9rem',
+          color: 'var(--foreground)',
+          opacity: 0.8,
+          fontFamily: 'var(--font-body)'
+        }}>
+          Made by <a
+            href="https://www.tiktok.com/@hwllojeena?_r=1&_t=ZS-93EDb36bCDP"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none', color: 'inherit', fontWeight: '500' }}
+          >
+            hwllojeena
+          </a>
+        </p>
       </footer>
 
     </div>
