@@ -250,8 +250,8 @@ export default function Write() {
                             display: 'flex',
                             flexDirection: 'column',
                             gap: '1rem',
-                            padding: '0 10%', // Giving some space from the hand-drawn border
-                            transform: 'rotate(-0.5deg)' // Slight tilt to match the hand-drawn feel
+                            padding: '0 10%',
+                            transform: 'rotate(-0.5deg)'
                         }}>
                             <h2 className="home-title" style={{ fontSize: '2.5rem', color: '#134857', fontWeight: '500' }}>Message Sent!</h2>
                             <p style={{ fontSize: '1.3rem', lineHeight: '1.4', color: '#546e7a' }}>

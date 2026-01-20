@@ -11,31 +11,49 @@ export async function POST(request) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
-        // Check for environment variables
+        // Check for environment variables with detailed logging for Vercel troubleshooting
         const { SMTP_USER, SMTP_PASS } = process.env;
 
+        console.log('Environment Check:', {
+            hasUser: !!SMTP_USER,
+            hasPass: !!SMTP_PASS,
+            userPreview: SMTP_USER ? `${SMTP_USER.substring(0, 3)}...` : 'not-found'
+        });
+
         if (!SMTP_USER || !SMTP_PASS) {
-            console.log('---------------------------------------------------');
-            console.log('⚠️  NO GMAIL CREDENTIALS FOUND. MOCKING EMAIL SEND.');
-            console.log(`To: ${toEmail}`);
-            console.log(`From: ${fromName}`);
-            console.log(`Message:\n${message}`);
-            console.log('---------------------------------------------------');
-
-            // Simulate network delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            return NextResponse.json({ success: true, message: 'Email simulated' });
+            console.error('❌ Missing GMAIL credentials in environment variables.');
+            return NextResponse.json({
+                error: 'Server configuration error: Missing credentials.',
+                success: false
+            }, { status: 500 });
         }
 
-        // Configure transporter for Gmail
+        // Configure transporter for Gmail - Port 587 with STARTTLS is often better for Vercel
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false, // use STARTTLS
             auth: {
                 user: SMTP_USER,
                 pass: SMTP_PASS,
-            }
+            },
+            // Add timeouts to prevent hanging
+            connectionTimeout: 15000, // 15 seconds
+            greetingTimeout: 15000,
+            socketTimeout: 15000,
         });
+
+        // Verify connection configuration
+        try {
+            await transporter.verify();
+            console.log("SMTP connection verified successfully");
+        } catch (verifyError) {
+            console.error("SMTP verification failed:", verifyError);
+            return NextResponse.json({
+                error: 'SMTP connection failed. Check your Gmail App Password and security settings.',
+                details: verifyError.message
+            }, { status: 500 });
+        }
 
         // Email content
         const mailOptions = {
