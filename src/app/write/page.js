@@ -163,31 +163,48 @@ export default function Write() {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                    backdropFilter: 'blur(5px)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(10px)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     zIndex: 1000,
                     padding: '1rem'
                 }}>
-                    <div className="glass-panel" style={{
-                        padding: '2rem',
-                        maxWidth: '400px',
+                    <div style={{
+                        position: 'relative',
                         width: '100%',
-                        textAlign: 'center',
+                        maxWidth: '450px',
+                        aspectRatio: '3/2',
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '1.5rem',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '2rem',
                         animation: 'fadeInScale 0.3s ease-out'
                     }}>
-                        <h2 style={{ fontSize: '1.8rem', color: '#134857', fontWeight: '500' }}>Message Sent!</h2>
-                        <p style={{ fontSize: '1.2rem', lineHeight: '1.5', color: '#546e7a' }}>
-                            Your letter is being sent through email.
-                        </p>
-                        <Link href="/" className="btn-primary" style={{ alignSelf: 'center' }}>
-                            Back
-                        </Link>
+                        <Image
+                            src="/popup_bg.png"
+                            alt="Notification Background"
+                            fill
+                            style={{ objectFit: 'contain', zIndex: -1 }}
+                        />
+                        <div style={{
+                            textAlign: 'center',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '1rem',
+                            padding: '0 10%', // Giving some space from the hand-drawn border
+                            transform: 'rotate(-0.5deg)' // Slight tilt to match the hand-drawn feel
+                        }}>
+                            <h2 style={{ fontSize: '1.8rem', color: '#134857', fontWeight: '500' }}>Message Sent!</h2>
+                            <p style={{ fontSize: '1.2rem', lineHeight: '1.4', color: '#546e7a' }}>
+                                Your letter is being sent through email.
+                            </p>
+                            <Link href="/" className="btn-primary" style={{ alignSelf: 'center', marginTop: '0.5rem' }}>
+                                Close
+                            </Link>
+                        </div>
                     </div>
                 </div>
             )}
