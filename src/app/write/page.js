@@ -8,13 +8,42 @@ export default function Write() {
     const [message, setMessage] = useState("");
     const [senderInitial, setSenderInitial] = useState("");
     const [showNotification, setShowNotification] = useState(false);
+    const [isSending, setIsSending] = useState(false);
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (!recipientEmail || !message || !senderInitial) {
             alert("Please fill in all fields!");
             return;
         }
-        setShowNotification(true);
+
+        setIsSending(true);
+
+        try {
+            const response = await fetch('/api/send_email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    toEmail: recipientEmail,
+                    fromName: senderInitial,
+                    message: message,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setShowNotification(true);
+            } else {
+                alert(data.error || "Failed to send email. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error sending email:", error);
+            alert("An error occurred. Please check your connection.");
+        } finally {
+            setIsSending(false);
+        }
     };
 
     return (
@@ -159,8 +188,10 @@ export default function Write() {
                     <button
                         onClick={handleSend}
                         className="btn-primary home-button"
+                        disabled={isSending}
+                        style={{ opacity: isSending ? 0.5 : 1 }}
                     >
-                        Send
+                        {isSending ? "Sending..." : "Send"}
                     </button>
                 </div>
                 <p style={{
